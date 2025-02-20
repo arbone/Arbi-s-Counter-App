@@ -18,4 +18,4 @@
    git clone https://github.com/arbone/Arbi-s-Counter-App.git
 
    ## 🌍 Prova l'app online
-🔗 [**Vai all'applicazione**](https://arbone.github.io/Arbi-s-Counter-App/)
+🔗 [**Vai all'applicazione**](https://arbone.github.io/infinitylogcount/)
