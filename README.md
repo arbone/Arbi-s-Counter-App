@@ -1,6 +1,6 @@
-# 🎯 Arbi's Counter App
+# 🎯 InfinityLogCount
 
-🔢 Un'applicazione semplice per incrementare e decrementare un valore numerico.
+🔢 Un'applicazione semplice per incrementare e decrementare un valore numerico. Annessa barra di progresso con aumento o decremento logaritmico.
 
 ## 🚀 Funzionalità
 ✔️ Incrementa e decrementa il valore con i pulsanti `+` e `-`.  
