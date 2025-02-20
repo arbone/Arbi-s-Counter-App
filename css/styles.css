@@ -1,29 +1,238 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #74ebd5, #acb6e5);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    background-color: #f4f4f4;
+    margin: 0;
+    transition: background 0.5s ease;
+}
+
+
+/* Header Flottante con Design Moderno e Cliccabile */
+header {
+    position: fixed;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(44, 62, 80, 0.9);
+    padding: 12px 5vw;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+    color: white;
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+    font-weight: bold;
+    font-family: 'Rajdhani', sans-serif; /* Font moderno e squadrato */
+    text-transform: uppercase;
+    white-space: nowrap;
+    max-width: 90%;
+    cursor: pointer; /* Indica che è cliccabile */
+}
+
+/* Cambia colore al passaggio del mouse */
+header:hover {
+    background: rgba(44, 62, 80, 1);
+}
+
+/* Media Query per Schermi Piccoli */
+@media (max-width: 768px) {
+    header {
+        font-size: clamp(1.1rem, 4vw, 1.5rem);
+        padding: 10px 8vw;
+    }
+}
+/* Header Rosso Quando il Counter è Negativo */
+body.negative header {
+    background: linear-gradient(135deg, #b71c1c, #ff5252); /* Rosso di contrasto */
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.6em;
+}
+
+/* Contenitore Tooltip (subito sotto l'header) */
+.tooltip-container {
+    position: relative;
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    font-size: 15px; /* Font più piccolo */
+    margin-top: 100px; /* Distanza dall'header */
+}
+
+/* Tooltip Nascosto di Default */
+.tooltip-text {
+    visibility: hidden;
+    width: 280px;
+    background: rgba(44, 62, 80, 0.9);
+    color: white;
+    text-align: center;
+    padding: 8px;
+    border-radius: 8px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 30px; /* Posizionato sotto la scritta */
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+/* Mostra il Tooltip al Passaggio del Mouse */
+.tooltip-container:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Mantiene il Tooltip Visibile per un Breve Periodo Dopo il Mouseout */
+.tooltip-container .tooltip-text {
+    transition-delay: 0.2s; /* Ritardo nella scomparsa */
+}
+main {
+    height: calc(100vh - 120px); /* Altezza totale meno l'header */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 20px; /* Spazio uniforme tra nome e counter */
+}
+
+
+.form__label {
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px; /* Font più grande */
+    color: white; /* Bianco */
+    pointer-events: none;
+    white-space: nowrap; /* Evita che vada a capo */
+}
+
+/* Sfondo rosso sfumato quando il counter è negativo */
+body.negative {
+    background: linear-gradient(135deg, #ff7b7b, #ff4444);
 }
 
 .container {
-    margin-top: 50px;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    max-width: 350px;
+    text-align: center;
 }
 
-p {
-    font-size: 2em;
+#counter {
+    font-size: 3em;
     font-weight: bold;
+    transition: transform 0.2s ease-in-out;
 }
 
 button {
     font-size: 1.5em;
-    padding: 10px 20px;
+    padding: 15px 25px;
     margin: 10px;
     border: none;
     cursor: pointer;
-    background-color: #007bff;
+    background: #4CAF50;
     color: white;
-    border-radius: 5px;
+    border-radius: 8px;
+    transition: 0.3s;
+    font-weight: bold;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 button:hover {
-    background-color: #0056b3;
+    background: #45a049;
+    transform: scale(1.1);
+}
+
+#reset {
+    background: #d9534f;
+}
+
+#reset:hover {
+    background: #c9302c;
+}
+
+/* Stile della Barra di Progresso */
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background: #ddd;
+    border-radius: 5px;
+    margin-top: 15px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+    background: #4CAF50; /* Verde di default */
+    border-radius: 5px;
+    transition: width 0.3s ease-in-out, background 0.3s ease-in-out;
+}
+
+/* Footer Flottante Sempre Visibile */
+/* Footer Flottante con Bordi Stondati */
+.footer {
+    position: fixed;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(44, 62, 80, 0.9);
+    padding: 12px 5vw;
+    border-radius: 15px;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    z-index: 1000;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Footer Links Centrati */
+.footer-links {
+    display: flex;
+    justify-content: center;  /* Centra le icone orizzontalmente */
+    align-items: center;  /* Centra verticalmente */
+    gap: 15px;
+    margin-bottom: 5px;
+}
+
+/* Icone Social */
+.social-icon {
+    font-size: 24px;
+    color: white;
+    transition: transform 0.3s ease-in-out;
+}
+
+.social-icon:hover {
+    transform: scale(1.2);
+    color: #74ebd5;
+}
+
+/* Copyright */
+.copyright {
+    margin: 0;
+    font-size: 12px;
+    opacity: 0.8;
 }

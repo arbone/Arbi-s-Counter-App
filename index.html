@@ -5,14 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Counter App</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Counter</h1>
-        <p id="counter">0</p>
-        <button id="decrement">-</button>
-        <button id="increment">+</button>
+    <header onclick="location.reload();">
+        <h1>Infinity(log)Count </h1>
+    </header>
+
+    <div class="tooltip-container">
+        <span class="tooltip-trigger">Perché "Log"?</span>
+        <div class="tooltip-text">
+            Ho chiamato il counter <strong>InfinityLogCount</strong> perché la barra di progresso segue una crescita logaritmica! 
+            Man mano che il valore aumenta, l’avanzamento rallenta, proprio come nei logaritmi, che crescono sempre più lentamente. ♾️
+        </div>
     </div>
+    
+    <main>
+        <div class="container">
+            <p id="counter">0</p>
+            <button id="decrement">-</button>
+            <button id="increment">+</button>
+            <button id="reset">Reset</button>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+        </div>
+    </main>
+    
     <script src="js/script.js"></script>
 </body>
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-links">
+            <a href="https://www.linkedin.com/in/arbishehu/" target="_blank" rel="noopener noreferrer">
+                <span class="social-icon"><i class="fa-brands fa-linkedin-in"></i></span>
+            </a>
+            <a href="https://github.com/arbone" target="_blank" rel="noopener noreferrer">
+                <span class="social-icon"><i class="fa-brands fa-github"></i></span>
+            </a>
+            <a href="mailto:arbishehu.business@gmail.com">
+                <span class="social-icon"><i class="fa-solid fa-envelope"></i></span>
+            </a>
+            <a href="https://arbone.github.io/arbi-shehu-protocols/index.html" target="_blank" rel="noopener noreferrer">
+                <span class="social-icon"><i class="fa-solid fa-globe"></i></span>
+            </a>
+        </div>
+        <p class="copyright">© 2025 ARBI SHEHU PROTOCOLS</p>
+        <p class="copyright">Tutti i diritti riservati</p>
+    </div>
+</footer>
 </html>
+
