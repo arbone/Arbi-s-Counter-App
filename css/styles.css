@@ -88,6 +88,12 @@ header h1 {
     transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
 }
 
+.tooltip-text {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
 /* Mostra il Tooltip al Passaggio del Mouse */
 .tooltip-container:hover .tooltip-text {
     visibility: visible;
