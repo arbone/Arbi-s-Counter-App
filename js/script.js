@@ -75,3 +75,13 @@ function updateCounter() {
         progressBar.style.background = "#4CAF50"; // Verde quando positivo o zero
     }
 }
+
+// Previene lo zoom con doppio tap
+let lastTouchEnd = 0;
+document.addEventListener("touchend", (event) => {
+    const now = new Date().getTime();
+    if (now - lastTouchEnd <= 300) { // Se il tocco avviene entro 300ms dal precedente
+        event.preventDefault();
+    }
+    lastTouchEnd = now;
+}, false);
