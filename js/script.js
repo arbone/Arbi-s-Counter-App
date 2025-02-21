@@ -5,15 +5,9 @@ const decrementButton = document.getElementById("decrement");
 const resetButton = document.getElementById("reset");
 const progressBar = document.querySelector(".progress-fill");
 const header = document.querySelector("header");
-
-window.addEventListener("scroll", function () {
-    const body = document.body;
-    if (window.scrollY > 50) {
-        body.classList.add("scrolled");
-    } else {
-        body.classList.remove("scrolled");
-    }
-});
+// Seleziona il tooltip
+const tooltipTrigger = document.querySelector(".tooltip-trigger");
+const tooltipText = document.querySelector(".tooltip-text");
 
 // Inizializziamo il counter con valore salvato
 let counter = localStorage.getItem("counter") ? parseInt(localStorage.getItem("counter")) : 0;
@@ -85,3 +79,12 @@ document.addEventListener("touchend", (event) => {
     }
     lastTouchEnd = now;
 }, false);
+
+window.addEventListener("scroll", function () {
+    const body = document.body;
+    if (window.scrollY > 50) {
+        body.classList.add("scrolled");
+    } else {
+        body.classList.remove("scrolled");
+    }
+});
