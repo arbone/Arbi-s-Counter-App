@@ -76,7 +76,7 @@ header h1 {
 /* Tooltip Nascosto di Default */
 .tooltip-text {
     visibility: hidden;
-    width: 280px;
+    width: 350px;
     background: rgba(44, 62, 80, 0.9);
     color: white;
     text-align: center;
@@ -116,7 +116,7 @@ main {
     justify-content: center; /* Centra esattamente il counter */
     width: 100%;
     gap: 10px; /* Spazio uniforme tra tooltip e counter */
-    padding-bottom: 40px; /* Evita che tocchi il footer */
+    padding-bottom: 95px; /* Evita che tocchi il footer */
 }
 
 
