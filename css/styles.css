@@ -10,13 +10,15 @@ body {
     text-align: center;
     margin: 0;
     transition: background 0.5s ease;
+    justify-content: center;
+    overflow: hidden;
 }
 
 
 /* Header Flottante con Design Moderno e Cliccabile */
 header {
     position: fixed;
-    top: 15px;
+    top: 0px;
     left: 50%;
     transform: translateX(-50%);
     background: rgba(44, 62, 80, 0.9);
@@ -68,6 +70,7 @@ header h1 {
     color: white;
     font-size: 15px; /* Font più piccolo */
     margin-top: 100px; /* Distanza dall'header */
+    margin-bottom: 5px; /* Riduce lo spazio tra il tooltip e il counter */
 }
 
 /* Tooltip Nascosto di Default */
@@ -134,6 +137,7 @@ body.negative {
 .container {
     background: white;
     padding: 10px;
+    padding-top: 10px; /* Ridotto per avvicinare il counter */
     border-radius: 15px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     max-width: 350px; /* Mantiene una larghezza massima */
