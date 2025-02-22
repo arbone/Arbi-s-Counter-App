@@ -88,3 +88,17 @@ window.addEventListener("scroll", function () {
         body.classList.remove("scrolled");
     }
 });
+
+document.addEventListener('dblclick', function (e) {
+    e.preventDefault();
+}, { passive: false });
+
+document.addEventListener('touchstart', function preventZoom(e) {
+    if (e.touches.length > 1) {
+        e.preventDefault();
+    }
+}, { passive: false });
+
+document.addEventListener('gesturestart', function (e) {
+    e.preventDefault();
+});
