@@ -139,13 +139,6 @@ body.negative {
     max-width: 350px; /* Mantiene una larghezza massima */
     min-width: 300px; /* Impedisce che si stringa troppo */
     text-align: center;
-
-    /* Centrare il container senza allungarlo */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: auto; /* Permette di adattarsi senza comprimersi */
 }
 
 #counter {
