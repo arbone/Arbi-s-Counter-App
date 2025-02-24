@@ -1,104 +1,92 @@
-// Selezioniamo gli elementi HTML
-const counterElement = document.getElementById("counter");
-const incrementButton = document.getElementById("increment");
-const decrementButton = document.getElementById("decrement");
-const resetButton = document.getElementById("reset");
-const progressBar = document.querySelector(".progress-fill");
-const header = document.querySelector("header");
-// Seleziona il tooltip
-const tooltipTrigger = document.querySelector(".tooltip-trigger");
-const tooltipText = document.querySelector(".tooltip-text");
+// Selezioniamo il contenitore principale
+const container = document.getElementById("counter-container");
 
 // Inizializziamo il counter con valore salvato
 let counter = localStorage.getItem("counter") ? parseInt(localStorage.getItem("counter")) : 0;
 
-// Funzione per aggiornare il counter e lo sfondo
-function updateCounter() {
-    counterElement.textContent = counter;
-    localStorage.setItem("counter", counter);
+// Funzione migliorata per creare elementi HTML
+function createElement(tag, { attributes = {}, classes = [], events = {}, children = [], textContent = "" } = {}) {
+    const element = document.createElement(tag);
 
-    // Cambia colore dello sfondo quando il counter è negativo
-    if (counter < 0) {
-        document.body.classList.add("negative");
-    } else {
-        document.body.classList.remove("negative");
+    // Aggiunge gli attributi
+    Object.keys(attributes).forEach(attr => element.setAttribute(attr, attributes[attr]));
+
+    // Aggiunge le classi
+    if (Array.isArray(classes)) {
+        element.classList.add(...classes);
     }
+
+    // Aggiunge gli eventi
+    Object.keys(events).forEach(event => element.addEventListener(event, events[event]));
+
+    // Aggiunge i figli
+    children.forEach(child => element.appendChild(child));
+
+    // Imposta il contenuto testuale se presente
+    if (textContent) element.textContent = textContent;
+
+    return element;
 }
 
-// Event listener per incrementare
-incrementButton.addEventListener("click", function () {
-    counter++;
+// Funzione per costruire il counter e i pulsanti dinamicamente
+function setupCounter() {
+    // Creazione degli elementi
+    const counterElement = createElement("p", { attributes: { id: "counter" }, textContent: counter });
+
+    const decrementButton = createElement("button", {
+        attributes: { id: "decrement" },
+        textContent: "-",
+        events: { click: () => { counter--; updateCounter(); } }
+    });
+
+    const incrementButton = createElement("button", {
+        attributes: { id: "increment" },
+        textContent: "+",
+        events: { click: () => { counter++; updateCounter(); } }
+    });
+
+    const resetButton = createElement("button", {
+        attributes: { id: "reset" },
+        textContent: "Reset",
+        events: { click: () => { counter = 0; updateCounter(); } }
+    });
+
+    const progressBar = createElement("div", { classes: ["progress-fill"] });
+    const progressBarContainer = createElement("div", { classes: ["progress-bar"], children: [progressBar] });
+
+    // Aggiunta degli elementi al container
+    container.append(counterElement, decrementButton, incrementButton, resetButton, progressBarContainer);
+
     updateCounter();
-});
-
-// Event listener per decrementare
-decrementButton.addEventListener("click", function () {
-    counter--;
-    updateCounter();
-});
-
-// Event listener per resettare
-resetButton.addEventListener("click", function () {
-    counter = 0;
-    updateCounter();
-});
-
-// Inizializza il counter alla partenza
-updateCounter();
-
-// Funzione per calcolare il progresso logaritmico
-function calculateProgress(value) {
-    return Math.log10(Math.abs(value) + 1) * 20; // Valore massimo teorico: ~60%
 }
 
-// Funzione per aggiornare il counter, la barra e l'header
+// Funzione per aggiornare il counter e la barra di progresso
 function updateCounter() {
+    const counterElement = document.getElementById("counter");
+    const progressBar = document.querySelector(".progress-fill");
+    const footer = document.querySelector(".footer");
+
     counterElement.textContent = counter;
     localStorage.setItem("counter", counter);
 
     // Calcola il progresso usando la formula logaritmica
-    let progress = calculateProgress(counter);
+    let progress = Math.log10(Math.abs(counter) + 1) * 20;
     progressBar.style.width = `${progress}%`;
 
-    // Cambia colore dello sfondo, della barra e dell'header
-    if (counter < 0) {
+    // Cambia colore dello sfondo, della barra e del footer
+    document.body.classList.remove("positive", "negative");
+    footer.classList.remove("positive", "negative");
+
+    if (counter > 0) {
+        document.body.classList.add("positive");
+        footer.classList.add("positive");
+        progressBar.style.background = "#4CAF50";
+    } else if (counter < 0) {
         document.body.classList.add("negative");
-        progressBar.style.background = "#ff4444"; // Rosso quando negativo
-    } else {
-        document.body.classList.remove("negative");
-        progressBar.style.background = "#4CAF50"; // Verde quando positivo o zero
+        footer.classList.add("negative");
+        progressBar.style.background = "#ff4444";
     }
 }
 
-// Previene lo zoom con doppio tap
-let lastTouchEnd = 0;
-document.addEventListener("touchend", (event) => {
-    const now = new Date().getTime();
-    if (now - lastTouchEnd <= 300) { // Se il tocco avviene entro 300ms dal precedente
-        event.preventDefault();
-    }
-    lastTouchEnd = now;
-}, false);
-
-window.addEventListener("scroll", function () {
-    const body = document.body;
-    if (window.scrollY > 50) {
-        body.classList.add("scrolled");
-    } else {
-        body.classList.remove("scrolled");
-    }
-});
-
-document.addEventListener('dblclick', function (e) {
-    e.preventDefault();
-}, { passive: false });
-
-document.addEventListener('touchstart', function preventZoom(e) {
-    if (e.touches.length > 1) {
-        e.preventDefault();
-    }
-}, { passive: false });
-
-document.addEventListener('gesturestart', function (e) {
-    e.preventDefault();
-});
+// Creazione del counter all'avvio della pagina
+document.addEventListener("DOMContentLoaded", setupCounter);

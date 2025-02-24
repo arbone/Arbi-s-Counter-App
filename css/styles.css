@@ -231,6 +231,10 @@ button:hover {
     margin-bottom: 5px;
 }
 
+.footer.negative {
+    background: linear-gradient(135deg, #b71c1c, #ff5252); /* Rosso */
+}
+
 /* Icone Social */
 .social-icon {
     font-size: 24px;

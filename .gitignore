@@ -1,0 +1,9 @@
+# File di sistema macOS
+.DS_Store
+
+# Cartelle specifiche di editor (VS Code, JetBrains, ecc.)
+.vscode/
+.idea/
+
+# File compilati (se presenti in futuro)
+*.log
